@@ -5,6 +5,9 @@ const PORT = 2025;
 const Listing = require("./models/listings.js");
 const path = require("path");
 const MONGOURL = "mongodb://127.0.0.1:27017/wonderlust";
+const methodOverride = require("method-override");
+
+app.use(methodOverride("_method"));
 
 // ejs setup
 app.set("view engine", "ejs");
@@ -75,6 +78,24 @@ app.get("/listings/:id/edit", async (req, res) => {
   const listing = await Listing.findById(id);
   res.render("listings/edit.ejs", { listing });
 });
+
+// Post changes
+app.put("/listings/:id", async (req, res) => {
+  // res.send("Working");
+  let { id } = req.params;
+  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+  res.redirect(`/listings/${id}`);
+});
+
+// Delete Post
+app.delete("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  await Listing.findByIdAndDelete(id);
+  res.redirect("/listings");
+  // res.send("Working ");
+});
+
+// Starting the Server
 app.listen(PORT, () => {
   console.log(`App is listening at http://localhost:${PORT}/`);
 });

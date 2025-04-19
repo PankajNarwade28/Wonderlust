@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listing: <%=listing.title %></title>
+  </head>
+  <body>
+    <h1>Listing <%= listing._id %></h1>
+    <p>Title:<%= listing.title %></p>
+    <p>Description:<%= listing.description %></p>
+    <p>Location:<%= listing.location %></p>
+    <p>Price:&#8377;<%= listing.price.toLocaleString("en-IN") %></p>
+    <p>Country:<%= listing.country %></p>
+    <!-- <img style="height: 250px width" src="<%= listing.image %>" alt="" /> -->
+    <button>
+      <a href="/listings/<%= listing._id %>/edit">Edit Listing</a>
+    </button>
+  </body>
+</html>

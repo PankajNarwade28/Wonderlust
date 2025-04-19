@@ -21,3 +21,7 @@ const listingSchema = new Schema({
   location: String,
   country: String,
 });
+
+const Listing = new mongoose.model("Listing", listingSchema);
+
+module.exports = Listing;

@@ -1,0 +1,33 @@
+.f-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 2px;
+  background-color: whitesmoke;
+  margin-top: 2px;
+  padding-bottom: 2px;
+}
+
+.f-info-socials {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-size: 1.4rem;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+  opacity: 0.8;
+  margin-right: 0.2rem;
+  font-size: 1rem;
+}
+.f-info-links a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}

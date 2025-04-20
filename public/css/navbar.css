@@ -1,0 +1,16 @@
+.navbar-icon-style i {
+  font-size: 2rem;
+  color: #fe424d;
+}
+
+body {
+  background-color: white;
+}
+.nav-link {
+  color: #222222 !important;
+}
+.navbar {
+  z-index: 99;
+  background-color: white;
+  box-shadow: 10px 1px 2px 3px whitesmoke;
+}

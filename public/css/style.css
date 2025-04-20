@@ -1,0 +1,77 @@
+.card {
+  border: none !important;
+  /* height: 200px; */
+  margin-bottom: 2rem;
+}
+.row a {
+  text-decoration: none;
+}
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+/* .plus-jakarta-sans-<uniquifier> {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */
+.container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+.card-img-top {
+  border-radius: 1rem;
+  height: 250px;
+  width: 100% !important;
+  object-fit: cover;
+}
+
+.loc-con {
+  display: flex;
+  justify-content: space-between;
+}
+.row {
+  justify-content: center;
+}
+.card-body {
+  padding: 0;
+}
+.card-text p {
+  font-weight: 400;
+}
+
+.card-img-overlay {
+  opacity: 0;
+  background-color: white;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.2;
+}
+
+.Show-btns {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card p {
+  margin: 0.3rem 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .card-sm {
+    width: 100%;
+    margin-left: 0;
+  }
+}

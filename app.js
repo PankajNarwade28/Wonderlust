@@ -6,7 +6,7 @@ const Listing = require("./models/listings.js");
 const path = require("path");
 const MONGOURL = "mongodb://127.0.0.1:27017/wonderlust";
 const methodOverride = require("method-override");
-
+const ejsMate = require("ejs-mate");
 app.use(methodOverride("_method"));
 
 // ejs setup
@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // to serve static css and js files
 app.use(express.static(path.join(__dirname, "public")));
+
+// Ejs mate engine setup
+app.engine("ejs", ejsMate);
 
 async function main() {
   await mongoose.connect(MONGOURL);

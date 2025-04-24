@@ -60,9 +60,7 @@ app.get("/listings/new", (req, res) => {
 app.post(
   "/listings",
   wrapAsync(async (req, res, next) => {
-    // res.send("Working");
-    let listings = req.body.listing;
-    const newListing = new Listing(listings);
+    const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
   })
@@ -114,12 +112,15 @@ app.delete(
   })
 );
 
-app.all("*", (req, res, next) => {
-  next(new ExpressError(404, "Page Not Found!"));
-});
 app.use((err, req, res, next) => {
-  let { statusCode, message } = err;
+  const { statusCode = 500, message = "Something went wrong" } = err;
   res.status(statusCode).send(message);
+});
+
+app._router.stack.forEach((middleware) => {
+  if (middleware.route) {
+    console.log("Route:", middleware.route.path);
+  }
 });
 
 // Starting the Server

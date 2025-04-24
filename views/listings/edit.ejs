@@ -3,7 +3,12 @@
   <h1 style="text-align: center">Edit Listing</h1>
   <div class="row">
     <div class="col-md-8">
-      <form action="/listings/<%= listing._id %>?_method=PUT" method="post">
+      <form
+        action="/listings/<%= listing._id %>?_method=PUT"
+        method="post"
+        novalidate
+        class="needs-validation"
+      >
         <div class="mb-2">
           <label for="title" class="form-label">Description</label>
           <input
@@ -11,13 +16,18 @@
             value="<%= listing.title %>"
             name="listing[title]"
             class="form-control"
+            required
           />
+
+          <div class="invalid-feedback">Please Enter a Catchy Title.</div>
+          <div class="valid-feedback">It's a Catchy Title.</div>
         </div>
         <div class="mb-2">
           <label for="description" class="form-label">Description</label>
-          <textarea name="listing[description]" class="form-control">
+          <textarea name="listing[description]" class="form-control" required>
 <%= listing.description %></textarea
           >
+          <div class="invalid-feedback">Please Describe in few lines.</div>
         </div>
         <div class="mb-2">
           <label for="image" class="form-label">Image Link/Url</label>
@@ -26,17 +36,22 @@
             name="listing[image]"
             value="<%= listing.image %>"
             class="form-control"
+            required
           />
+          <div class="invalid-feedback">Provide related image Link or Url.</div>
+          <div class="valid-feedback">Hope this link is fine.</div>
         </div>
         <div class="row">
           <div class="mb-2 col-md-4">
             <label for="price" class="form-label">Price</label>
             <input
-              type="number"
+              type="text"
               name="listing[price]"
               value="<%= listing.price %>"
               class="form-control"
+              required
             />
+            <div class="invalid-feedback">The Price must be there.</div>
           </div>
           <div class="mb-2 col-md-8">
             <label for="location" class="form-label">Location</label>
@@ -45,7 +60,9 @@
               name="listing[location]"
               value="<%= listing.location %>"
               class="form-control"
+              required
             />
+            <div class="invalid-feedback">Please Enter a Location!</div>
           </div>
         </div>
         <div class="mb-2">
@@ -55,11 +72,14 @@
             name="listing[country]"
             value="<%= listing.country %>"
             class="form-control"
+            required
           />
+          <div class="invalid-feedback">Please Enter Country name!</div>
         </div>
 
         <button class="btn btn-success">Update Changes</button>
       </form>
     </div>
   </div>
+  <script src="/js/validate.js"></script>
 </body>

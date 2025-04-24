@@ -2,7 +2,7 @@
 <body>
   <h1 style="text-align: center">Add New Listings</h1>
 
-  <form action="/listings" method="post">
+  <form action="/listings" method="post" novalidate class="needs-validation">
     <div class="row">
       <div class="col col-md-8">
         <div class="mb-2">
@@ -14,6 +14,8 @@
             placeholder="Add a Catchy Title."
             required
           />
+          <div class="invalid-feedback">Please Enter a Catchy Title.</div>
+          <div class="valid-feedback">It's a Catchy Title.</div>
         </div>
         <div class="mb-2">
           <label for="description" class="form-label">Description</label>
@@ -23,6 +25,7 @@
             placeholder="Describe Hotel in few Lines"
             required
           ></textarea>
+          <div class="invalid-feedback">Please Describe in few lines.</div>
         </div>
         <div class="mb-2">
           <label for="image" class="form-label">Image URL</label>
@@ -33,17 +36,20 @@
             placeholder="Enter Image Link/Url"
             required
           />
+          <div class="invalid-feedback">Provide related image Link or Url.</div>
+          <div class="valid-feedback">Hope this link is fine.</div>
         </div>
         <div class="row">
           <div class="mb-2 col-md-4">
             <label for="price" class="form-label">Price</label>
             <input
-              type="number"
+              type="text"
               name="listing[price]"
               class="form-control"
               placeholder="1,500"
               required
             />
+            <div class="invalid-feedback">The Price must be there.</div>
           </div>
           <div class="mb-2 col-md-8">
             <label for="location" class="form-label">Location</label>
@@ -54,6 +60,7 @@
               placeholder="Pune"
               required
             />
+            <div class="invalid-feedback">Please Enter a Location!</div>
           </div>
         </div>
         <div class="mb-2">
@@ -65,6 +72,7 @@
             placeholder="Maharashtra , India"
             required
           />
+          <div class="invalid-feedback">Please Enter Country name!</div>
         </div>
         <button class="btn btn-dark add-btn">Add</button>
       </div>

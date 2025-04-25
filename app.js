@@ -7,6 +7,7 @@ const path = require("path");
 const MONGOURL = "mongodb://127.0.0.1:27017/wonderlust";
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const { listingSchema } = require("./schema.js");
 // importing wrapAsync function to handle asynchronous errors
 const wrapAsync = require("./util/wrapAsync.js");
 // importing ExpressError to handle custom errors
@@ -43,6 +44,19 @@ app.get("/", (req, res) => {
   res.render("sample.ejs");
 });
 
+const validateListing = (req, res, next) => {
+  let { error } = listingSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => {
+      el.message.join(",");
+      console.log("hiii");
+    });
+    throw new ExpressError(400, errMsg);
+  } else {
+    next();
+  }
+};
+
 // Index route
 app.get("/listings", async (req, res) => {
   const allListings = await Listing.find({});
@@ -59,7 +73,14 @@ app.get("/listings/new", (req, res) => {
 // Post Listings
 app.post(
   "/listings",
+  validateListing,
   wrapAsync(async (req, res, next) => {
+    // res.send("Working");
+    let result = listingSchema.validate(req.body);
+    console.log(result);
+    if (!req.body.listing) {
+      throw new ExpressError(400, "Send valid Data ");
+    }
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -93,6 +114,7 @@ app.get(
 // Post changes
 app.put(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     // res.send("Working");
     let { id } = req.params;
@@ -104,6 +126,7 @@ app.put(
 // Delete Post
 app.delete(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
@@ -112,17 +135,41 @@ app.delete(
   })
 );
 
+// app.all("*", (req, res, next) => {
+//   next(new ExpressError(404, "Page Not Found"));
+// });
+// creating a Middleware to  handle  async errors
+
+// app.all("*", (err, req, res, next) => {
+//   // let { statusCode, message } = err;
+//   // res.status(statusCode).message(message);
+//   // throw new ExpressError(404, "Page Not Found");
+//   res.send("Page not Found");
+// });
+// Catch-all route for undefined paths
+// app.all("*", (req, res, next) => {
+//   next(new ExpressError(404, "Page Not Found"));
+// });
+// app.all("*", (req, res) => {
+//   res.redirect("/error");
+// });
+
+app.use("/404PageNotFound", (req, res, next) => {
+  next(new ExpressError(404, "Page Not Found"));
+});
+
+// Error handler middleware
 app.use((err, req, res, next) => {
   const { statusCode = 500, message = "Something went wrong" } = err;
-  res.status(statusCode).send(message);
+  res.status(statusCode).render("error.ejs", { message });
 });
 
-app._router.stack.forEach((middleware) => {
-  if (middleware.route) {
-    console.log("Route:", middleware.route.path);
-  }
+app.use(function (req, res) {
+  // res.type("text/plain");
+  // res.status(404);
+  // res.send("404 Page Not Found");
+  res.redirect("/404PageNotFound");
 });
-
 // Starting the Server
 app.listen(PORT, () => {
   console.log(`App is listening at http://localhost:${PORT}/`);

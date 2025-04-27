@@ -3,11 +3,12 @@ const app = express();
 const mongoose = require("mongoose");
 const PORT = 2025;
 const Listing = require("./models/listings.js");
+const Review = require("./models/review.js");
 const path = require("path");
 const MONGOURL = "mongodb://127.0.0.1:27017/wonderlust";
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const { listingSchema } = require("./schema.js");
+const { listingSchema, reviewSchema } = require("./schema.js");
 // importing wrapAsync function to handle asynchronous errors
 const wrapAsync = require("./util/wrapAsync.js");
 // importing ExpressError to handle custom errors
@@ -44,13 +45,25 @@ app.get("/", (req, res) => {
   res.render("sample.ejs");
 });
 
+app.get("/review", (req, res) => {
+  console.log(Review);
+
+  res.send("reive");
+});
+
 const validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
   if (error) {
-    let errMsg = error.details.map((el) => {
-      el.message.join(",");
-      console.log("hiii");
-    });
+    let errMsg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(400, errMsg);
+  } else {
+    next();
+  }
+};
+const validateReviews = (req, res, next) => {
+  let { error } = reviewSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(400, errMsg);
   } else {
     next();
@@ -95,7 +108,7 @@ app.get(
     // await Listing.findById(id).then((res) => {
     //   console.log(res);
     // });
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", { listing });
   })
 );
@@ -126,14 +139,39 @@ app.put(
 // Delete Post
 app.delete(
   "/listings/:id",
-  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    await Listing.findByIdAndDelete(id);
+    await Listing.findByIdAndDelete(id).populate("reviews");
+
     res.redirect("/listings");
     // res.send("Working ");
   })
 );
+
+// Adding  Review
+app.post(
+  "/listings/:id/review",
+  validateReviews,
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    let listing = await Listing.findById(id);
+    let newReview = new Review(req.body.review);
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+    console.log(newReview);
+    // res.send("REview Posted");
+    res.redirect(`/listings/${listing._id}/`);
+  })
+);
+
+app.delete("/listings/:id/reviews/:reviewId", async (req, res) => {
+  let { id, reviewId } = req.params;
+  await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+  await Review.findByIdAndDelete(reviewId);
+  res.redirect(`/listings/${id}`);
+});
 
 // app.all("*", (req, res, next) => {
 //   next(new ExpressError(404, "Page Not Found"));

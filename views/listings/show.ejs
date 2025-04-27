@@ -1,35 +1,95 @@
 <% layout ("/layouts/boilerplate") %>
-<body>
-  <!-- <h1 style="text-align: center;">Listing </h1> -->
 
-  <div class="card col-md-6 offset-3 card-sm">
-    <img src="<%=listing.image%>" class="card-img-top" alt="..." />
-    <div class="card-body mt-1">
-      <p class="card-text">
-        <b><%=listing.title%> </b> <br />&#8377; <%=
-        listing.price.toLocaleString("en-IN") %>/Night.
-      </p>
-      <div class="card-info">
-        <p>Title:<%= listing.title %></p>
-        <p>Description:<%= listing.description %></p>
-        <div class="loc-con">
-          <span> <%= listing.location %> </span>
-          <span> <%= listing.country %></span>
-        </div>
+<div class="card col-md-6 offset-3 card-sm card_ls">
+  <h2><%=listing.title%></h2>
+  <img src="<%=listing.image%>" class="card-img-top" alt="..." />
+  <div class="card-body mt-1">
+    <p class="card-text">
+      &#8377; <%= listing.price.toLocaleString("en-IN") %>/Night.
+    </p>
+    <div class="card-info">
+      <p>Title:<%= listing.title %></p>
+      <p>Description:<%= listing.description %></p>
+      <div class="loc-con">
+        <span> <%= listing.location %> </span>
+        <span> <%= listing.country %></span>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="Show-btns btns">
-    <div>
-      <a class="btn btn-success" href="/listings/<%= listing._id %>/edit"
-        >Edit</a
-      >
-    </div>
-    <div>
-      <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
-        <button class="btn btn-danger">Delete</button>
-      </form>
-    </div>
+<div class="Show-btns btns">
+  <div>
+    <a class="btn btn-success" href="/listings/<%= listing._id %>/edit">Edit</a>
   </div>
-</body>
+  <div>
+    <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
+      <button class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+</div>
+
+<div class="col-md-6 offset-md-3 mb-2 mt-2">
+  <legend class="form-legend">Leave a Review</legend>
+  <form
+    novalidate
+    class="needs-validation"
+    action="/listings/<%= listing._id %>/review"
+    style="
+      border: 2px solid rgb(179, 174, 174);
+      border-radius: 12px;
+      padding: 14px;
+    "
+    method="post"
+  >
+    <div class="mb-2">
+      <label for="rating" class="form-label">Select Rating</label>
+      <input
+        name="review[rating]"
+        type="range"
+        id="rating"
+        class="form-range"
+        min="0"
+        max="5"
+        required
+      />
+      <div class="invalid-feedback">Please Select Rating.</div>
+    </div>
+    <div class="mb-2">
+      <label for="comment" class="form-label">Give Review</label>
+      <textarea
+        name="review[comment]"
+        id="comment"
+        class="form-control"
+        required
+      ></textarea>
+      <div class="invalid-feedback">Please Enter a short Review.</div>
+      <!-- <div class="valid-feedback">It's a Catchy Title.</div> -->
+    </div>
+    <button class="btn btn-outline-dark">Submit</button>
+  </form>
+  <hr />
+
+  <p><b>Reviews</b></p>
+  <div class="review-div">
+    <% for(review of listing.reviews) {%>
+    <div class="card r-c mb-3">
+      <div class="card-body review-card">
+        <h5 class="card-title">Jane Doe</h5>
+        <p class="card-text"><%= review.comment %></p>
+
+        <div class="rat-btn">
+          <p class="card-text"><%= review.rating %>Stars</p>
+          <form
+            method="post"
+            action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
+          >
+            <button class="btn btn-sm btn-dark">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <% } %>
+  </div>
+</div>

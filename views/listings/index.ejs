@@ -4,10 +4,10 @@
   <!-- <form action="/listings/new" method="get">
     <button>Add New Listing</button>
   </form> -->
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
     <% for (let listing of allListings){%>
     <a href="/listings/<%=listing._id%>/">
-      <div class="card col">
+      <div class="card col card_ls">
         <img src="<%=listing.image%>" class="card-img-top" alt="..." />
         <div class="card-img-overlay"></div>
         <div class="card-body">

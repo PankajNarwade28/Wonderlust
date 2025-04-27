@@ -1,4 +1,4 @@
-.card {
+.card_ls {
   border: none !important;
   /* height: 200px; */
   margin-bottom: 2rem;
@@ -74,4 +74,22 @@ body {
     width: 100%;
     margin-left: 0;
   }
+}
+
+.review-div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.r-c {
+  width: 48%;
+  padding: 2px;
+}
+.rat-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 4px;
 }

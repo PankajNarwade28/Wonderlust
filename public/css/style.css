@@ -1,10 +1,11 @@
 .card_ls {
   border: none !important;
-  /* height: 200px; */
-  margin-bottom: 2rem;
+  margin-bottom: 2rem !important;
+  padding: 10px !important;
 }
 .row a {
-  text-decoration: none;
+  text-decoration: none !important;
+  padding: 0 !important;
 }
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -15,22 +16,17 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-/* .plus-jakarta-sans-<uniquifier> {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-} */
+
 .container {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  flex: 1;
+  /* margin-top: 2rem !important;
+  margin-bottom: 2rem; */
+  flex: 1 !important;
 }
 .card-img-top {
-  border-radius: 1rem;
-  height: 250px;
+  border-radius: 1rem !important;
+  height: 250px !important  ;
   width: 100% !important;
-  object-fit: cover;
+  object-fit: cover !important;
 }
 
 .loc-con {
@@ -41,14 +37,14 @@ body {
   justify-content: center;
 }
 .card-body {
-  padding: 0;
+  padding: 0 !important;
 }
 .card-text p {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .card-img-overlay {
-  opacity: 0;
+  opacity: 0 !important;
   background-color: white;
 }
 
@@ -65,15 +61,21 @@ body {
 }
 
 .card p {
-  margin: 0.3rem 0;
-  padding: 0;
+  margin: 0.3rem 0 !important;
+  padding: 0 !important;
 }
 
 @media (max-width: 768px) {
   .card-sm {
-    width: 100%;
-    margin-left: 0;
+    width: 100% !important;
+    margin-left: 0 !important;
   }
+  .Show-btns {
+    width: 100%;
+    padding: 3px;
+  }
+}
+@media (max-width: 768px) {
 }
 
 .review-div {
@@ -92,4 +94,8 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 0 4px;
+}
+
+.hmenu {
+  font-size: 1.7rem;
 }

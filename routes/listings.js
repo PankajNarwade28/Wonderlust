@@ -8,22 +8,28 @@ const wrapAsync = require("../util/wrapAsync.js");
 // importing ExpressError to handle custom errors
 const ExpressError = require("../util/ExpressError.js");
 
-// Index route
-router.get("/", wrapAsync(listingController.index));
+router
+  .route("/")
+  .get(wrapAsync(listingController.index))
+  .post(
+    isLoggedIn,
+    validateListing,
+    wrapAsync(listingController.PostNewListings)
+  );
 
 // Add New Route
 router.get("/new", isLoggedIn, listingController.RenderNewForm);
 
-// Post Listings
-router.post(
-  "/",
-  isLoggedIn,
-  validateListing,
-  wrapAsync(listingController.PostNewListings)
-);
-
-// Show route
-router.get("/:id", wrapAsync(listingController.showListings));
+router
+  .route("/:id")
+  .get(wrapAsync(listingController.showListings))
+  .put(
+    isLoggedIn,
+    isOwner,
+    validateListing,
+    wrapAsync(listingController.updateListings)
+  )
+  .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListings));
 
 // Edit Listing
 router.get(
@@ -31,23 +37,6 @@ router.get(
   isLoggedIn,
   isOwner,
   wrapAsync(listingController.editListings)
-);
-
-// Post changes Updates
-router.put(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  validateListing,
-  wrapAsync(listingController.updateListings)
-);
-
-// Delete Post
-router.delete(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(listingController.deleteListings)
 );
 
 module.exports = router;

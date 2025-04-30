@@ -2,7 +2,13 @@
 <body>
   <h1 style="text-align: center">Add New Listings</h1>
 
-  <form action="/listings" method="post" novalidate class="needs-validation">
+  <form
+    action="/listings"
+    method="post"
+    novalidate
+    class="needs-validation"
+    enctype="multipart/form-data"
+  >
     <div class="row">
       <div class="col col-md-8">
         <div class="mb-2">
@@ -27,14 +33,19 @@
           ></textarea>
           <div class="invalid-feedback">Please Describe in few lines.</div>
         </div>
-        <div class="mb-2">
+        <!-- <div class="mb-2">
           <label for="image" class="form-label">Image URL</label>
           <input
             type="text"
             name="listing[image]"
             class="form-control"
             placeholder="Enter Image Link/Url"
-          />
+          />  
+          <div class="valid-feedback">Hope this link is fine.</div>  
+        </div> -->
+        <div class="mb-2">
+          <label for="image" class="form-label">Upload Image</label>
+          <input type="file" name="listing[image]" class="form-control" />
           <!-- <div class="invalid-feedback">Provide related image Link or Url.</div>
           <div class="valid-feedback">Hope this link is fine.</div> -->
         </div>

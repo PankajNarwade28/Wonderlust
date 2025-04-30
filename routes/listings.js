@@ -11,11 +11,14 @@ const ExpressError = require("../util/ExpressError.js");
 router
   .route("/")
   .get(wrapAsync(listingController.index))
-  .post(
-    isLoggedIn,
-    validateListing,
-    wrapAsync(listingController.PostNewListings)
-  );
+  // .post(
+  //   isLoggedIn,
+  //   validateListing,
+  //   wrapAsync(listingController.PostNewListings)
+  // );
+  .post((req, res) => {
+    res.send(req.body);
+  });
 
 // Add New Route
 router.get("/new", isLoggedIn, listingController.RenderNewForm);

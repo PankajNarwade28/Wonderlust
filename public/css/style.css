@@ -99,3 +99,14 @@ body {
 .hmenu {
   font-size: 1.7rem;
 }
+
+.btn-login {
+  background-color: #fe424d;
+  color: white;
+  opacity: 0.8;
+}
+.btn-login:hover {
+  opacity: 1;
+  background-color: #fe424d;
+  color: white;
+}

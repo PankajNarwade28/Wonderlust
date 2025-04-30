@@ -4,12 +4,13 @@
   <h2><%=listing.title%></h2>
   <img src="<%=listing.image%>" class="card-img-top" alt="..." />
   <div class="card-body mt-1">
+    <p class="card-text">Owned By_ <%= listing.owner.username%></p>
     <p class="card-text">
       &#8377; <%= listing.price.toLocaleString("en-IN") %>/Night.
     </p>
     <div class="card-info">
-      <p>Title:<%= listing.title %></p>
-      <p>Description:<%= listing.description %></p>
+      <p class="card-text">Title:<%= listing.title %></p>
+      <p class="card-text">Description:<%= listing.description %></p>
       <div class="loc-con">
         <span> <%= listing.location %> </span>
         <span> <%= listing.country %></span>
@@ -17,6 +18,7 @@
     </div>
   </div>
 </div>
+<% if(currUser && currUser._id.equals(listing.owner._id)){ %>
 
 <div class="Show-btns btns">
   <div>
@@ -28,7 +30,7 @@
     </form>
   </div>
 </div>
-
+<% } %>
 <div class="col-md-6 offset-md-3 mb-2 mt-2">
   <legend class="form-legend">Leave a Review</legend>
   <form

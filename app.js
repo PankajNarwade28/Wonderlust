@@ -72,9 +72,9 @@ main()
     console.log("Error while Connecting with MongoDB");
   });
 
-app.get("/", (req, res) => {
-  res.render("sample.ejs");
-});
+// app.get("/", (req, res) => {
+//   res.render("sample.ejs");
+// });
 
 // to create a demo usre using passport with hashed password and salt
 app.get("/demouser", async (req, res) => {
@@ -108,5 +108,5 @@ app.use(function (req, res) {
 
 // Starting the Server
 app.listen(PORT, () => {
-  console.log(`App is listening at http://localhost:${PORT}/`);
+  console.log(`App is listening at http://localhost:${PORT}/listings`);
 });

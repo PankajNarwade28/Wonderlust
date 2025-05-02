@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-body-light sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand navbar-icon-style" href="/"
+    <a class="navbar-brand navbar-icon-style" href="/listings"
       ><i class="fa-solid fa-compass hmenu"></i
     ></a>
     <button
@@ -13,21 +13,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings/">Home</a>
-        <a class="nav-link" href="/listings/">All Listings</a>
-        <a class="nav-link" href="/listings/new">Add New Lisings</a>
+        <a class="nav-link" href="/listings/">Explore</a>
       </div>
-      <div class="navbar-nav ms-auto">
+      <div class="navbar-nav ms-auto navFlex">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
         <% if(!currUser) {%>
         <a class="nav-link" href="/signup"
-          ><button class="btn btn-success">Signup</button></a
+          ><button class="btn btn-outline-success">Signup</button></a
         >
         <a class="nav-link" href="/login"
-          ><button class="btn btn-login">Log in</button></a
+          ><button class="btn btn-outline-danger">Log in</button></a
         >
         <% }else{ %>
         <a class="nav-link" href="/logout"
-          ><button class="btn btn-warning">Logout</button></a
+          ><button class="btn btn-outline-warning">Logout</button></a
         ><% } %>
       </div>
     </div>

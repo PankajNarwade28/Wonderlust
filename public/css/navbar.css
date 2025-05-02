@@ -2,7 +2,11 @@
   font-size: 2rem;
   color: #fe424d;
 }
-
+.navFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 body {
   background-color: white;
 }

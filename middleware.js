@@ -47,6 +47,7 @@ module.exports.isAuthor = async (req, res, next) => {
 
 module.exports.validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
+  console.log(req.body.listing);
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(400, errMsg);

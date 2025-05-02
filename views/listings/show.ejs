@@ -2,7 +2,7 @@
 
 <div class="card col-md-6 offset-3 card-sm card_ls">
   <h2><%=listing.title%></h2>
-  <img src="<%=listing.image%>" class="card-img-top" alt="..." />
+  <img src="<%=listing.image.url%>" class="card-img-top" alt="..." />
   <div class="card-body mt-1">
     <p class="card-text">Owned By_ <%= listing.owner.username%></p>
     <p class="card-text">
@@ -32,7 +32,6 @@
 </div>
 <% } %>
 <div class="col-md-6 offset-md-3 mb-2 mt-2">
-  <% if(currUser ){ %>
   <legend class="form-legend">Leave a Review</legend>
   <form
     novalidate
@@ -84,7 +83,7 @@
     <button class="btn btn-outline-dark">Submit</button>
   </form>
   <hr />
-  <% } %> <%if(listing.reviews.length){%>
+  <%if(listing.reviews.length){%>
   <p><b>Reviews</b></p>
   <% } %>
   <div class="review-div">
@@ -108,5 +107,21 @@
     </div>
 
     <% } %>
+  </div>
+  <div id="map">
+    <label for="frame"
+      >You'll be here.
+      <button id="underM"><b>Under Maintenance!</b></button></label
+    >
+    <iframe
+      id="frame"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d242063.9198455547!2d73.75577049707032!3d18.562821011510554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1746183956745!5m2!1sen!2sin"
+      width="100%"
+      height="300"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
   </div>
 </div>

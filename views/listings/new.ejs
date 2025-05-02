@@ -16,7 +16,7 @@
           <input
             type="text"
             class="form-control"
-            name="listing[title] "
+            name="listing[title]"
             placeholder="Add a Catchy Title."
             required
           />
@@ -45,9 +45,14 @@
         </div> -->
         <div class="mb-2">
           <label for="image" class="form-label">Upload Image</label>
-          <input type="file" name="listing[image]" class="form-control" />
-          <!-- <div class="invalid-feedback">Provide related image Link or Url.</div>
-          <div class="valid-feedback">Hope this link is fine.</div> -->
+          <input
+            type="file"
+            name="listing[image]"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Please Upload a Image.</div>
+          <!-- <div class="valid-feedback">Hope this link is fine.</div> -->
         </div>
         <div class="row">
           <div class="mb-2 col-md-4">

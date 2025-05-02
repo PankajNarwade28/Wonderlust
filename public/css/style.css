@@ -100,6 +100,19 @@ body {
   font-size: 1.7rem;
 }
 
+#underM {
+  font-size: 9px;
+  color: red;
+  cursor: initial;
+  background-color: white !important;
+  border: 1px solid rgb(155, 153, 153);
+  border-radius: 10px;
+}
+
+#imgg {
+  height: 200px;
+  width: 400px;
+}
 .btn-login {
   background-color: #fe424d;
   color: white;

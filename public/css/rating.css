@@ -257,3 +257,9 @@
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
+
+@media (max-width: 1000px) {
+  .r-c {
+    width: 100% !important;
+  }
+}

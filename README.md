@@ -58,7 +58,7 @@ Create a `.env` file in the root directory and add the following values:
 
 ```ini
 PORT=3000
-DB_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/wonderlust
+DB_URL=<yourMongoAtlasUrl>
 SECRET=<yourSessionSecret>
 CLOUDINARY_CLOUD_NAME=<yourCloudName>
 CLOUDINARY_KEY=<yourApiKey>
@@ -111,3 +111,7 @@ Developed by *Pankaj Narwade*.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Monitoring & Disclaimer
+
+All operations—including creating, editing, or deleting listings—are actively monitored and logged by the site *administrator*. By using this application, you consent to this monitoring and agree that your actions may be reviewed at any time. **Unauthorized, malicious, or non-compliant activities** may result in suspension or termination of your account, removal of content, or legal action at the administrator’s discretion.

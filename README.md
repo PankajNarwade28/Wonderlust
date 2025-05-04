@@ -106,7 +106,7 @@ This app can be deployed on platforms like Render, Heroku, or similar.
 
 ## Author
 
-Developed by *Your Name*.
+Developed by *Pankaj Narwade*.
 
 ## License
 

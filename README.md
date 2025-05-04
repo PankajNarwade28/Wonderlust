@@ -124,7 +124,7 @@ This app can be deployed on platforms like Render, Heroku, or similar.
 
 ## Author
 
-Developed by *Pankaj  Narwadae*.
+Developed by *Pankaj  Narwade*.
 
 ## License
 

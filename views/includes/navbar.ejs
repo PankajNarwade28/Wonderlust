@@ -15,6 +15,22 @@
       <div class="navbar-nav">
         <a class="nav-link" href="/listings/">Explore</a>
       </div>
+      <div class="ms-auto">
+        <form class="form-inline">
+          <input
+            class="form-control mr-sm-2 search-inp"
+            type="search"
+            placeholder="Search Destination"
+            aria-label="Search"
+          />
+          <button
+            class="btn btn-outline-success my-2 my-sm-0 search-btn"
+            type="submit"
+          >
+            Search
+          </button>
+        </form>
+      </div>
       <div class="navbar-nav ms-auto navFlex">
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
         <% if(!currUser) {%>
@@ -29,6 +45,33 @@
           ><button class="btn btn-outline-warning">Logout</button></a
         ><% } %>
       </div>
+      <div id="toggleSwitch " class="tax-btn-mobile">
+        <div class="form-check form-switch curPoint">
+          <input
+            class="form-check-input curPoint"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckDefault"
+          />
+          <label class="form-check-label curPoint" for="flexSwitchCheckDefault"
+            >Display taxes</label
+          >
+        </div>
+      </div>
     </div>
   </div>
 </nav>
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+    let taxinfo = document.getElementsByClassName("taxInfo");
+    console.log(taxinfo);
+    for (info of taxinfo) {
+      if (info.style.display != "inline") {
+        info.style.display = "inline";
+      } else {
+        info.style.display = "none";
+      }
+    }
+  });
+</script>

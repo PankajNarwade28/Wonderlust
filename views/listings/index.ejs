@@ -1,24 +1,60 @@
 <% layout ("/layouts/boilerplate") %>
-<body>
+
   <style>
     #filters{
       display: flex; 
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center; 
       margin-top: 1.5rem; 
-    }
+    } 
     .filter{
       text-align: center;
       font-size: 1rem;
       opacity: 0.7;
-      margin-right: 2rem;
+      margin-right: 1rem;
     }
-
+.filter_div{
+  display: flex;
+}
     .filter:hover{
       opacity: 1;
       cursor: pointer;
     }
+
+    .taxInfo{
+      display: none;
+    }
+
+
+    .tax-btn{
+      border: 1px solid blue;
+      padding: 0.5rem 2rem  ;
+      border-radius: 15px;
+      cursor: pointer;
+    } 
+
+    @media(max-width:990px){
+      .filter{ 
+        font-size: 0.7rem; 
+        margin-right: 0.5rem;
+      }
+      .tax-btn { 
+    padding: 0.2rem 1.5rem;  
+}
+    }
+
+    @media(max-width:768px){
+      #filters {
+    display: none; 
+}
+.navbar-nav {
+    display: inline;}
+    }
   </style>
   <div id="filters">
-    <div class="filter">
+   <div class="filter_div">
+     <div class="filter">
       <div><i class="fa-solid fa-fire"></i></div>
       <p>Trending</p>
     </div>
@@ -54,6 +90,12 @@
       <div><i class="fa-solid fa-snowflake"></i></div>
       <p>Arctic  </p>
     </div>
+   </div>
+    <div id="toggleSwitch" class="tax-btn">
+    <div class="form-check form-switch">
+  <input class="form-check-input GST" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+  <label class="form-check-label" for="flexSwitchCheckChecked">Display Taxes</label>
+</div></div>
   </div>
    
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
@@ -65,7 +107,7 @@
         <div class="card-body">
           <p class="card-text">
             <b><%=listing.title%> </b> <br />&#8377; <%=
-            listing.price.toLocaleString("en-IN") %>/Night.
+            listing.price.toLocaleString("en-IN") %>/Night. <i class="taxInfo ">&nbsp; &nbsp; +18% GST</i>
             <br />
             <div class="loc-con"> <span> <%= listing.location %>  </span>
            <span> <%= listing.country %></span></div>
@@ -76,4 +118,17 @@
     </a>
     <%}%>
   </div>
-</body>
+  <script>
+    let taxSwitch=document.getElementsByClassName("GST");
+    taxSwitch.addEventListener("click",()=>{ 
+      let taxinfo=document.getElementsByClassName("taxInfo");
+      console.log(taxinfo);
+      for(info of taxinfo){
+        if(info.style.display!="inline"){
+        info.style.display="inline";}
+        else{
+          info.style.display="none";
+        }
+      }
+    });
+  </script>

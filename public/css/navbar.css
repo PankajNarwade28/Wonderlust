@@ -18,3 +18,32 @@ body {
   background-color: white;
   box-shadow: 10px 1px 2px 3px whitesmoke;
 }
+.tax-btn-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    display: inline !important;
+  }
+  .tax-btn-mobile {
+    display: block;
+  }
+  .tax-btn-mobile {
+    border: 1px solid blue;
+    padding: 0.5rem 2rem;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 200px;
+  }
+}
+
+.search-btn,
+.search-inp {
+  border-radius: 25px !important;
+}
+.search-btn {
+  background-color: #fe424d !important;
+  color: white !important;
+  border: none !important;
+}

@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+// require("dotenv").config(); // This should be at the top
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -5,7 +9,9 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const PORT = 2025;
 const path = require("path");
-const MONGOURL = "mongodb://127.0.0.1:27017/wonderlust";
+// const MONGOURL = "mongodb://127.0.0.1:27017/wonderlust";
+const MONGOURL = process.env.MONGO_ATLAS_URL;
+console.log(MONGOURL);
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const passport = require("passport");

@@ -51,7 +51,7 @@ This application follows the **Model-View-Controller (MVC)** pattern:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/<your-username>/wonderlust-listings.git
+   git clone https://github.com/PankajNarwade28/wonderlust-listings.git
    cd wonderlust-listings
    ```
 2. Install dependencies:
@@ -66,7 +66,7 @@ Create a `.env` file in the root directory and add the following values:
 
 ```ini
 PORT=3000
-DB_URL=<yourMongoAtlasUrl>
+DB_URL=<yourAtlasUrl>
 SECRET=<yourSessionSecret>
 CLOUDINARY_CLOUD_NAME=<yourCloudName>
 CLOUDINARY_KEY=<yourApiKey>
@@ -100,21 +100,31 @@ This app can be deployed on platforms like Render, Heroku, or similar.
 ## Project Structure
 
 ```
+├── classroom/        # Classroom related resources
+├── controllers/      # Controller logic for routes
+├── Images/           # Image assets for the app
+├── init/             # Initialization scripts or seed data
 ├── models/           # Mongoose schemas (Listing, User)
-├── routes/           # Express route modules (listings, users)
-├── views/            # EJS templates and layouts
+├── node_modules/     # Installed dependencies
 ├── public/           # Static assets (CSS, JS, images)
-├── middleware/       # Custom middleware (authorization, validation)
-├── cloudinary.js     # Cloudinary config
-├── app.js            # Express app setup & config
-├── server.js         # Entry point
+├── routes/           # Express route modules
+├── uploads/          # File upload storage (local before Cloudinary)
+├── util/             # Utility functions and helpers
+├── views/            # EJS templates and layouts
 ├── .env              # Environment variables (not in repo)
-└── package.json      # Dependencies & scripts
+├── .gitignore        # Files and folders to ignore in Git
+├── app.js            # Express app setup & config
+├── CloudConfig.js    # Cloudinary configuration
+├── middleware.js     # Custom middleware definitions
+├── package.json      # Dependencies & scripts
+├── package-lock.json # Lockfile for exact dependencies
+├── README.md         # This documentation
+└── schema.js         # Database schema definitions (if separate)
 ```
 
 ## Author
 
-Developed by *Your Name*.
+Developed by *Pankaj  Narwadae*.
 
 ## License
 
@@ -122,4 +132,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Monitoring & Disclaimer
 
-All operations—including creating, editing, or deleting listings—are actively monitored and logged by the site administrator. By using this application, you consent to this monitoring and agree that your actions may be reviewed at any time.** Unauthorized, malicious, or non-compliant activities **  may result in suspension or termination of your account, removal of content, or legal action at the administrator’s discretion.
+All operations—including creating, editing, or deleting listings—are actively monitored and logged by the site administrator. By using this application, you consent to this monitoring and agree that your actions may be reviewed at any time. Unauthorized, malicious, or non-compliant activities may result in suspension or termination of your account, removal of content, or legal action at the administrator’s discretion.

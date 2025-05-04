@@ -1,15 +1,14 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-// require("dotenv").config(); // This should be at the top
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const PORT = 2025;
 const path = require("path");
-// const MONGOURL = "mongodb://127.0.0.1:27017/wonderlust";
 const MONGOURL = process.env.MONGO_ATLAS_URL;
 console.log(MONGOURL);
 const methodOverride = require("method-override");
@@ -19,9 +18,23 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 const ExpressError = require("./util/ExpressError.js");
+
+const store = MongoStore.create({
+  mongoUrl: MONGOURL,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", () => {
+  console.log("ERROR IN MONGO SESSION STORE");
+});
+
 // setting up session
 const sessionOption = {
-  secret: "secretsuperkey",
+  store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -30,6 +43,7 @@ const sessionOption = {
     httpOnly: true,
   },
 };
+
 app.use(session(sessionOption));
 app.use(flash());
 

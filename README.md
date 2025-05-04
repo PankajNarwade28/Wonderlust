@@ -27,6 +27,14 @@ Hosted Example: [https://wonderlust-88hd.onrender.com/listings](https://wonderlu
 * **Templating** with EJS and layout inheritance via EJS-Mate
 * **Security**: cookie parsing, environment variable management with dotenv
 
+## Architecture
+
+This application follows the **Model-View-Controller (MVC)** pattern:
+
+* **Models** (`/models`): Define your data schemas and interact with MongoDB using Mongoose (e.g., `Listing`, `User`).
+* **Views** (`/views`): EJS templates that render the user interface, with layout inheritance provided by EJS-Mate.
+* **Controllers** (`/routes` and `middleware`): Business logic for handling requests, validation via Joi, and authorization checks. Routes delegate to specific handler functions that act as controllers.
+
 ## Tech Stack
 
 * **Runtime**: Node.js, Express.js
@@ -106,7 +114,7 @@ This app can be deployed on platforms like Render, Heroku, or similar.
 
 ## Author
 
-Developed by *Pankaj Narwade*.
+Developed by *Your Name*.
 
 ## License
 
@@ -114,4 +122,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Monitoring & Disclaimer
 
-All operations—including creating, editing, or deleting listings—are actively monitored and logged by the site *administrator*. By using this application, you consent to this monitoring and agree that your actions may be reviewed at any time. **Unauthorized, malicious, or non-compliant activities** may result in suspension or termination of your account, removal of content, or legal action at the administrator’s discretion.
+All operations—including creating, editing, or deleting listings—are actively monitored and logged by the site administrator. By using this application, you consent to this monitoring and agree that your actions may be reviewed at any time.** Unauthorized, malicious, or non-compliant activities **  may result in suspension or termination of your account, removal of content, or legal action at the administrator’s discretion.

@@ -69,4 +69,15 @@
       crossorigin="anonymous"
     ></script>
   </body>
+  <script>
+    window.addEventListener("pageshow", function (event) {
+      if (
+        event.persisted ||
+        (window.performance && window.performance.navigation.type === 2)
+      ) {
+        // Reload the page if it's loaded from back/forward cache
+        window.location.reload();
+      }
+    });
+  </script>
 </html>

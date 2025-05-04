@@ -22,7 +22,7 @@ module.exports.saveRedirectUrl = (req, res, next) => {
 module.exports.isOwner = async (req, res, next) => {
   let { id } = req.params;
   let listing = await Listing.findById(id);
-  console.log(listing);
+  // console.log(listing);
   if (!listing.owner.equals(res.locals.currUser._id)) {
     console.log(listing.owner);
     req.flash("error", "You are not Owner!");
@@ -38,7 +38,7 @@ module.exports.isAuthor = async (req, res, next) => {
   let review = await Review.findById(reviewId);
   console.log(review);
   if (!review.author.equals(res.locals.currUser._id)) {
-    console.log(review.author);
+    // console.log(review.author);
     req.flash("error", "You are not Author!");
     return res.redirect(`/listings/${id}`);
   }
@@ -47,7 +47,7 @@ module.exports.isAuthor = async (req, res, next) => {
 
 module.exports.validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
-  console.log(req.body.listing);
+  // console.log(req.body.listing);
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(400, errMsg);
